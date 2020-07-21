@@ -6,7 +6,7 @@ const RESOURCES = {
   "assets/AssetManifest.json": "3ff317a615ef6e954271e1b3937c6b05",
 "assets/FontManifest.json": "d1d98195c74ea8578011539c85a1ba98",
 "assets/fonts/MaterialIcons-Regular.ttf": "56d3ffdef7a25659eab6a68a3fbfaf16",
-"assets/NOTICES": "36719543f05b5e4d18b4efa56c167325",
+"assets/NOTICES": "f98a6ac33586196a3aab696ec99d6320",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "115e937bb829a890521f72d2e664b632",
 "assets/packages/flutter_auth_buttons/fonts/Roboto-Medium.ttf": "d08840599e05db7345652d3d417574a9",
 "assets/packages/flutter_auth_buttons/fonts/SF-Pro-Medium.ttf": "8b61dea99518b51d5511dc3963a5537c",
@@ -19,10 +19,10 @@ const RESOURCES = {
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
-"index.html": "6097aa348700796c5e6fa2048642db93",
-"/": "6097aa348700796c5e6fa2048642db93",
-"main.dart.js": "ca11900018bd184dd475a8824824492f",
-"manifest.json": "bedc5edbbef4254b6e24e4fc1220ab3f"
+"index.html": "59adbd3b500ee80aa0a60dfa67247301",
+"/": "59adbd3b500ee80aa0a60dfa67247301",
+"main.dart.js": "a277554a1fd8896a35327350c5150ed6",
+"manifest.json": "9e7b34fd7c291ca2523123ef20497930"
 };
 
 // The application shell files that are downloaded before a service worker can
@@ -113,7 +113,7 @@ self.addEventListener("fetch", (event) => {
   if (event.request.url == origin || event.request.url.startsWith(origin + '/#')) {
     key = '/';
   }
-  // If the URL is not the the RESOURCE list, skip the cache.
+  // If the URL is not the RESOURCE list, skip the cache.
   if (!RESOURCES[key]) {
     return event.respondWith(fetch(event.request));
   }
@@ -136,11 +136,11 @@ self.addEventListener("fetch", (event) => {
 self.addEventListener('message', (event) => {
   // SkipWaiting can be used to immediately activate a waiting service worker.
   // This will also require a page refresh triggered by the main worker.
-  if (event.data == 'skipWaiting') {
+  if (event.data === 'skipWaiting') {
     return self.skipWaiting();
   }
 
-  if (event.message = 'downloadOffline') {
+  if (event.message === 'downloadOffline') {
     downloadOffline();
   }
 });
